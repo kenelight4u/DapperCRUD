@@ -5,7 +5,7 @@ END
 GO
 
 CREATE PROCEDURE sp_AddProduct
-	@Name nvarchar(50), @Description nvarchar(MAX), @Barcode nvarchar(50), @Rate decimal(18, 2), @AddedOn datetime
+	@Name nvarchar(50), @Description nvarchar(MAX), @Barcode nvarchar(50), @Rate decimal(18, 2), @AddedOn datetime2
 AS
 BEGIN
 	-- SET NOCOUNT ON added to prevent extra result sets from
@@ -13,7 +13,5 @@ BEGIN
 	SET NOCOUNT ON;
 
 	INSERT INTO Product (Name, Description, Barcode, Rate, AddedOn) VALUES (@Name, @Description, @Barcode, @Rate, @AddedOn)
-
-	--SELECT CAST(SCOPE_IDENTITY() as int);
 	
 END

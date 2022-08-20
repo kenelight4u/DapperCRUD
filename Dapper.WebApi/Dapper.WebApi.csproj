@@ -13,4 +13,22 @@
     <ProjectReference Include="..\Dapper.Infrastructure\Dapper.Infrastructure.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="SQL\sp_AddProduct.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="SQL\sp_DeleteById.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="SQL\sp_GetAllProducts.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="SQL\sp_GetProductById.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="SQL\sp_UpdateProduct.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>

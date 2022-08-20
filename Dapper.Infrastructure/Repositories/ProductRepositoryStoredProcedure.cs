@@ -38,7 +38,7 @@ namespace Dapper.Infrastructure.Repositories
         public async Task<int> DeleteAsync(int id)
         {
             var parameters = new DynamicParameters();
-            parameters.Add("@Id", id, DbType.UInt32);
+            parameters.Add("@Id", id, DbType.Int32);
 
             using (var connection = new SqlConnection(_configuration.GetConnectionString("DefaultConnection")))
             {
@@ -61,7 +61,7 @@ namespace Dapper.Infrastructure.Repositories
         public async Task<Product> GetByIdAsync(int id)
         {
             var parameters = new DynamicParameters();
-            parameters.Add("@Id", id, DbType.UInt32);
+            parameters.Add("@Id", id, DbType.Int32);
 
             using (var connection = new SqlConnection(_configuration.GetConnectionString("DefaultConnection")))
             {
@@ -76,7 +76,7 @@ namespace Dapper.Infrastructure.Repositories
             entity.ModifiedOn = DateTime.Now;
 
             var parameters = new DynamicParameters();
-            AddPeriodParameters(parameters, entity);
+            UpdatePeriodParameters(parameters, entity);
 
             using (var connection = new SqlConnection(_configuration.GetConnectionString("DefaultConnection")))
             {
@@ -88,13 +88,21 @@ namespace Dapper.Infrastructure.Repositories
 
         private void AddPeriodParameters(DynamicParameters parameters, Product product)
         {
-            parameters.Add("@Id", product.Id, DbType.UInt32);
             parameters.Add("@Name", product.Name, DbType.String);
             parameters.Add("@Description", product.Description, DbType.String);
             parameters.Add("@Barcode", product.Barcode, DbType.String);
             parameters.Add("@Rate", product.Rate, DbType.Decimal);
-            parameters.Add("@ModifiedOn", product.ModifiedOn, DbType.DateTime);
-            parameters.Add("@AddedOn", product.AddedOn, DbType.DateTime);
+            parameters.Add("@AddedOn", product.AddedOn, DbType.DateTime2);
+        }
+
+        private void UpdatePeriodParameters(DynamicParameters parameters, Product product)
+        {
+            parameters.Add("@Id", product.Id, DbType.Int32);
+            parameters.Add("@Name", product.Name, DbType.String);
+            parameters.Add("@Description", product.Description, DbType.String);
+            parameters.Add("@Barcode", product.Barcode, DbType.String);
+            parameters.Add("@Rate", product.Rate, DbType.Decimal);
+            parameters.Add("@ModifiedOn", product.ModifiedOn, DbType.DateTime2);
         }
     }
 }

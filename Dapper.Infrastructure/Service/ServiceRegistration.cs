@@ -8,8 +8,9 @@ namespace Dapper.Infrastructure.Service
     {
         public static void AddInfrastructure(this IServiceCollection services)
         {
-            services.AddTransient<IProductRepository, ProductRepository>();
+            //services.AddTransient<IProductRepository, ProductRepository>();
             services.AddTransient<IUnitOfWork, UnitOfWork>();
+            services.AddTransient<IProductRepository, ProductRepositoryStoredProcedure>();
         }
     }
 }
